@@ -1,5 +1,5 @@
 package function
 
 type IProvider interface {
-	Invoke(async bool, function_id string, req map[string]interface{}) (resp map[string]interface{}, request_id string, err error)
+	Invoke(async bool, functionID string, req map[string]interface{}) (resp map[string]interface{}, requestID string, err error)
 }

@@ -13,7 +13,7 @@ type FunctionProviderManager map[string]function.IProvider
 func MustGetFunctionProviderManager() IProviderManager {
 	m := make(FunctionProviderManager)
 
-	registeHuawei(m)
+	registerHuawei(m)
 
 	return m
 }

@@ -5,7 +5,7 @@ import (
 	huaweifunctionprovider "github.com/cnjack/cloudfunc/internal/provider/function/huawei"
 )
 
-func registeHuawei(manager FunctionProviderManager) {
+func registerHuawei(manager FunctionProviderManager) {
 	config := huaweiauthorization.NewConfig()
 	if !config.Enable {
 		return

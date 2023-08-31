@@ -8,7 +8,7 @@ import (
 func NewRouter(ctl controller.IController) *echo.Echo {
 	e := echo.New()
 
-	e.POST("/function/:provider/:function_id", ctl.Function)
+	e.POST("/function/:provider/:function_id/invoke", ctl.FunctionInvoke)
 
 	return e
 }

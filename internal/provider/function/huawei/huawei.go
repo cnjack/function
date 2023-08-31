@@ -13,7 +13,7 @@ import (
 
 var _ function.IProvider = (*Huawei)(nil)
 
-func New(region string, credentials *basic.Credentials) *Huawei {
+func New(region string, credentials *basic.Credentials) function.IProvider {
 	client := functiongraph.NewFunctionGraphClient(
 		functiongraph.FunctionGraphClientBuilder().
 			WithRegion(functiongraphregion.ValueOf(region)).
@@ -26,10 +26,10 @@ type Huawei struct {
 	*functiongraph.FunctionGraphClient
 }
 
-func (p *Huawei) Invoke(async bool, function_id string, req map[string]interface{}) (resp map[string]interface{}, request_id string, err error) {
+func (p *Huawei) Invoke(async bool, functionID string, req map[string]interface{}) (resp map[string]interface{}, requestID string, err error) {
 	if async {
 		hwResp, err := p.AsyncInvokeFunction(&functiongraphmodel.AsyncInvokeFunctionRequest{
-			FunctionUrn: function_id,
+			FunctionUrn: functionID,
 			Body:        req,
 		})
 		if err != nil {
@@ -38,7 +38,7 @@ func (p *Huawei) Invoke(async bool, function_id string, req map[string]interface
 		return map[string]interface{}{}, *hwResp.RequestId, nil
 	}
 	hwResp, err := p.InvokeFunction(&functiongraphmodel.InvokeFunctionRequest{
-		FunctionUrn: function_id,
+		FunctionUrn: functionID,
 		Body:        req,
 	})
 	if err != nil {
